@@ -1,4 +1,4 @@
-package src.dataStructure;
+package src.dataStructure.배열_리스트;
 
 import java.util.Scanner;
 
