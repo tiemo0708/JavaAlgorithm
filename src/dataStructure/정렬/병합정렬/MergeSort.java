@@ -6,7 +6,7 @@ public class MergeSort {
         mergeSort(arr, tmp, 0, arr.length -1);
     }
     private static void mergeSort(int[] arr, int[] tmp, int start, int end) {
-        if (start < end) {
+        if (start < end) { //정렬할 구간에 2개 이상의 원소가 있을 때만
             int mid = (start + end) / 2;
             mergeSort(arr, tmp, start, mid);
             mergeSort(arr, tmp, mid + 1, end);
@@ -31,7 +31,7 @@ public class MergeSort {
             }
             index++;
         }
-        for (int i = 0; i <= mid -part1; i++){
+        for (int i = 0; i <= mid -part1; i++){ // 왼쪽 부분 배열이 아직 남은경우에만 복사, 오른쪽은 남아 있기 때문
             arr[index + i] = tmp[part1 + i];
         }
     }
