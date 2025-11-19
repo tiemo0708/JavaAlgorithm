@@ -1,4 +1,4 @@
-package src.dataStructure.정렬.선택정렬;
+package src.정렬.선택정렬;
 
 import java.util.Scanner;
 

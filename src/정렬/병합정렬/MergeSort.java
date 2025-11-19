@@ -1,4 +1,4 @@
-package src.dataStructure.정렬.병합정렬;
+package src.정렬.병합정렬;
 
 public class MergeSort {
     private static void mergeSort(int[] arr) {

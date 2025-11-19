@@ -1,4 +1,4 @@
-package src.dataStructure.정렬.버블;
+package src.정렬.버블;
 
 import java.util.Scanner;
 
