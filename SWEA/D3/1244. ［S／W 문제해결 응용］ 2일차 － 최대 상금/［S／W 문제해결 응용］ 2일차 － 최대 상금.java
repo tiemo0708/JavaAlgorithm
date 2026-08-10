@@ -31,14 +31,14 @@ public class Solution {
 			}
 
 			max = 0; 
-			dfs(0);
+			dfs(0, 0);
 			sb.append("#").append(test_case).append(" ").append(max).append("\n");
 
 		}
 		System.out.println(sb);
 	}
 
-	private static void dfs(int depth) {
+	private static void dfs(int start, int depth) {
 		if (depth == N) {
 			int result = 0;
 			for (int i = 0; i < len; i++) {
@@ -48,10 +48,10 @@ public class Solution {
 			return;
 		}
 
-		for (int i = 0; i < len; i++) {
+		for (int i = start; i < len; i++) {
 			for (int j = i+1; j < len; j++) {
 				swap(i,j);
-				dfs(depth + 1);
+				dfs(start, depth + 1);
 				swap(i,j);
 			}
 		}
