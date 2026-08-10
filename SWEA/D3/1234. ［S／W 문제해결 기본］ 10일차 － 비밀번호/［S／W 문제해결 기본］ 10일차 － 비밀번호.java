@@ -1,45 +1,38 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.StringTokenizer;
 
-public class Solution {
+class Solution {
+
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
-
 		int T = 10;
 
 		for (int test_case = 1; test_case <= T; test_case++) {
-			List<Integer> list = new ArrayList<>();
-
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			int n = Integer.parseInt(st.nextToken());
-			String s = st.nextToken();
+			String str = st.nextToken();
 
-			for (char c : s.toCharArray()) {
-				list.add(c - '0');
-			}
+			Deque<Character> stack = new ArrayDeque<Character>();
 
-			for (int i = 1; i < n; i++) {
-//				System.out.println("n: " + n + "i: " + i);
-//				System.out.println(list.get(i - 1) + " : " + (list.get(i)));
-//				System.out.println("테케 " + test_case);
-				if (list.get(i) == list.get(i - 1)) {
-					list.remove(i);
-					list.remove(i - 1);
-					n -= 2;
-					if (i > 1) {
-						i -= 2;
-					}
+			for (int i = 0; i < n; i++) {
+				char c = str.charAt(i);
+				if (!stack.isEmpty() && stack.peek() == c) {
+					stack.pop();
+				} else {
+					stack.push(c);
 				}
 			}
-			sb.append("#").append(test_case).append(" ");
-			for (int num : list) {
-				sb.append(num);
+
+			StringBuilder result = new StringBuilder(); // 스택은 역순이라 뒤집어서
+			while (!stack.isEmpty()) {
+				result.append(stack.pop());
 			}
-			sb.append("\n");
+			result.reverse();
+			sb.append("#").append(test_case).append(" ").append(result).append("\n");
 		}
 		System.out.println(sb);
 	}
