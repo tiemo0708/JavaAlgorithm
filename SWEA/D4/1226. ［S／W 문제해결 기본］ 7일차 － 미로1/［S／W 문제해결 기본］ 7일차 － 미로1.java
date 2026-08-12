@@ -54,7 +54,7 @@ public class Solution {
 					queue.offer(new int[] { x, y });
 					if (arr[x][y] == 3) {
 						result = 1;
-						break;
+						return;
 					}
 				}
 			}
