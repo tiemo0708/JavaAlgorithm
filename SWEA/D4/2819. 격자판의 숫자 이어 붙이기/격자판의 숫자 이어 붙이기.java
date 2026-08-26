@@ -48,7 +48,7 @@ public class Solution {
 			int ny = cy + dy[i];
 			if (nx >= 0 && ny >= 0 && nx < 4 && ny < 4) {
 				dfs(depth+1,str,nx,ny);
-				str.substring(0, str.length()-1);
+				
 			}
 
 		}
