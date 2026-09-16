@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.HashSet;
 import java.util.StringTokenizer;
 
 public class Solution {
@@ -8,7 +7,7 @@ public class Solution {
 	static char[][] arr;
 	static int[] dx = { 1, -1, 0, 0 };
 	static int[] dy = { 0, 0, 1, -1 };
-	static HashSet<Character> visited;
+	static boolean[] visited;
 	static int max;
 	static int totalAlphabet;
 
@@ -39,11 +38,11 @@ public class Solution {
 					totalAlphabet++;
 				}
 			}
-
-			visited = new HashSet<>();
+			visited = new boolean[26];
 			int cnt = 1;
 			max = cnt;
-			visited.add(arr[0][0]);
+			int startIndex = arr[0][0] - 'A';
+			visited[startIndex] = true;
 			dfs(0, 0, cnt);
 			sb.append("#").append(test_case).append(" ").append(max).append("\n");
 		}
@@ -62,11 +61,15 @@ public class Solution {
 			int ny = y + dy[i];
 
 			if (nx < 0 || ny < 0 || nx >= r || ny >= c) continue;
-			if (visited.add(arr[nx][ny])) {
-				if(dfs(nx, ny, cnt + 1)) return true;
-				visited.remove(arr[nx][ny]);
-			}
+
+			int index = arr[nx][ny] - 'A';
+			if (visited[index]) continue;
+
+			visited[index] = true;
+			if (dfs(nx, ny, cnt + 1))return true;
+			visited[index] = false;
 		}
+
 		return false;
 	}
 
