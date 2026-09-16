@@ -50,24 +50,24 @@ public class Solution {
 		System.out.println(sb);
 	}
 
-	private static void dfs(int x, int y, int cnt) {
+	private static boolean dfs(int x, int y, int cnt) {
 		max = Math.max(max, cnt);
 
 		if (max == totalAlphabet) {
-			return;
+			return true;
 		}
 
 		for (int i = 0; i < 4; i++) {
 			int nx = x + dx[i];
 			int ny = y + dy[i];
 
-			if (nx < 0 || ny < 0 || nx >= r || ny >= c)
-				continue;
-			else if (visited.add(arr[nx][ny])) {
-				dfs(nx, ny, cnt + 1);
+			if (nx < 0 || ny < 0 || nx >= r || ny >= c) continue;
+			if (visited.add(arr[nx][ny])) {
+				if(dfs(nx, ny, cnt + 1)) return true;
 				visited.remove(arr[nx][ny]);
 			}
 		}
+		return false;
 	}
 
 }
