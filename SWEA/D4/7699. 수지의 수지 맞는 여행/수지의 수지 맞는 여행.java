@@ -10,6 +10,7 @@ public class Solution {
 	static int[] dy = { 0, 0, 1, -1 };
 	static HashSet<Character> visited;
 	static int max;
+	static int totalAlphabet;
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -21,12 +22,24 @@ public class Solution {
 			c = Integer.parseInt(st.nextToken());
 			arr = new char[r][c];
 
+			boolean[] alphabet = new boolean[26];
 			for (int i = 0; i < r; i++) {
 				String str = br.readLine();
 				for (int j = 0; j < c; j++) {
 					arr[i][j] = str.charAt(j);
+					int index = arr[i][j] - 'A';
+					alphabet[index] = true;
 				}
 			}
+			totalAlphabet = 0;
+
+			for (int i = 0; i < 26; i++) {
+
+				if (alphabet[i]) {
+					totalAlphabet++;
+				}
+			}
+
 			visited = new HashSet<>();
 			int cnt = 1;
 			max = cnt;
@@ -38,8 +51,10 @@ public class Solution {
 	}
 
 	private static void dfs(int x, int y, int cnt) {
-		if (max < cnt) {
-			max = cnt;
+		max = Math.max(max, cnt);
+
+		if (max == totalAlphabet) {
+			return;
 		}
 
 		for (int i = 0; i < 4; i++) {
