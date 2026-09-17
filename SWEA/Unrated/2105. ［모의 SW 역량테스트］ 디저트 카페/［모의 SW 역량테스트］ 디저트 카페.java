@@ -38,7 +38,7 @@ public class Solution {
 			root:for (int i = 0; i < n; i++) {
 				for (int j = 0; j < n; j++) {
 					
-					dfs(i, j, i, j, 1, 0);
+					dfs(i, j, i, j, 0, 0);
 					if (max >= totalDessert) {
 						break root;
 					}
@@ -51,8 +51,7 @@ public class Solution {
 	}
 
 	private static void dfs(int sx, int sy, int cx, int cy, int cnt, int d) {
-		if (d == 3 && sx == cx && sy == cy && cnt>4) {
-			cnt--;
+		if (d == 3 && sx == cx && sy == cy && cnt>3) {
 			max = Math.max(cnt, max);
 			return;
 		}
