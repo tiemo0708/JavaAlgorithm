@@ -1,49 +1,52 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader br =
-            new BufferedReader(new InputStreamReader(System.in));
+                new BufferedReader(new InputStreamReader(System.in));
 
-        int t = Integer.parseInt(br.readLine().trim());
-        StringBuilder sb = new StringBuilder();
-
-        for (int tc = 1; tc <= t; tc++) {
-            int n = Integer.parseInt(br.readLine().trim());
-
-            int[] trees = new int[n];
-            int maxHeight = 0;
-
-            StringTokenizer st =
-                new StringTokenizer(br.readLine());
-
-            for (int i = 0; i < n; i++) {
-                trees[i] = Integer.parseInt(st.nextToken());
-                maxHeight = Math.max(maxHeight, trees[i]);
-            }
-
-            int one = 0;
-            int two = 0;
-
-            for (int i = 0; i < n; i++) {
-                int diff = maxHeight - trees[i];
-
-                one += diff % 2;
-                two += diff / 2;
-            }
-
-            while (two > one + 1) { // 빈홀수날이 1개 이하로 만들기
-                two--;
-                one += 2;
-            }
-
-            int answer = Math.max(one * 2 - 1, two * 2);// 더긴 날로
-
-            sb.append('#').append(tc).append(' ')
-              .append(answer).append('\n');
+        int T = Integer.parseInt(br.readLine());
+        for(int tc = 1; tc<=T; tc++){
+            
+        	int N = Integer.parseInt(br.readLine());
+        	int []arr = new int[N];
+        	StringTokenizer st= new StringTokenizer(br.readLine());
+        	
+        	int maxheight = 0;
+        	for(int i =0; i<N; i++) {
+        		arr[i] = Integer.parseInt(st.nextToken());
+        		maxheight = Math.max(maxheight, arr[i]);
+        	}
+        	
+        	int sum = 0;
+        	int oddcnt = 0;
+        	
+        	for(int i=0; i<N; i++) {
+        		
+        		
+        		int dif = maxheight - arr[i];
+        		sum += dif;
+        		if(dif % 2 == 1) {
+        			oddcnt++;
+        		}
+        	}
+        	
+        	int days =(sum/3) *2 +(sum %3);
+        	
+        	int odddays = (days+1) /2;
+        	
+        	if(odddays <oddcnt) {
+        		
+        		days = (oddcnt)*2-1;
+        	}
+        	
+        	
+        	System.out.println("#" + tc +" "+days);
         }
 
-        System.out.print(sb);
+
     }
 }
