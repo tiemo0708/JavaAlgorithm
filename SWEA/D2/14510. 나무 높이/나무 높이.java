@@ -1,52 +1,43 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Solution {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br =
-                new BufferedReader(new InputStreamReader(System.in));
 
-        int T = Integer.parseInt(br.readLine());
-        for(int tc = 1; tc<=T; tc++){
-            
-        	int N = Integer.parseInt(br.readLine());
-        	int []arr = new int[N];
-        	StringTokenizer st= new StringTokenizer(br.readLine());
-        	
-        	int maxheight = 0;
-        	for(int i =0; i<N; i++) {
-        		arr[i] = Integer.parseInt(st.nextToken());
-        		maxheight = Math.max(maxheight, arr[i]);
-        	}
-        	
-        	int sum = 0;
-        	int oddcnt = 0;
-        	
-        	for(int i=0; i<N; i++) {
-        		
-        		
-        		int dif = maxheight - arr[i];
-        		sum += dif;
-        		if(dif % 2 == 1) {
-        			oddcnt++;
-        		}
-        	}
-        	
-        	int days =(sum/3) *2 +(sum %3);
-        	
-        	int odddays = (days+1) /2;
-        	
-        	if(odddays <oddcnt) {
-        		
-        		days = (oddcnt)*2-1;
-        	}
-        	
-        	
-        	System.out.println("#" + tc +" "+days);
-        }
+class Solution {
+	
+	public static void main(String[] args) throws Exception{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		int T =Integer.parseInt(br.readLine());		
+		for(int test_case = 1; test_case <= T; test_case++){
+		
+			int n = Integer.parseInt(br.readLine());
+			
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			
+			int maxH=0;
+			int[] arr = new int[n];
+			for(int i=0; i<n; i++) {
+				arr[i] = Integer.parseInt(st.nextToken());
+				maxH = Math.max(maxH, arr[i]);
+			}
+			int one = 0;
+			int two = 0;
+			for(int i=0; i<n; i++) {
+				int h = maxH - arr[i];
+				one += h%2;
+				two += h/2;
+			}
+			while(two>one+1) {
+				two--;
+				one = one+2;
+			}
+			int result = Math.max(one*2-1, two*2);
+			   sb.append('#').append(test_case).append(' ')
+	              .append(result).append('\n');
+		}
+		System.out.println(sb);
+		
+	}
 
-
-    }
 }
