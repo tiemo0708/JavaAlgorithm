@@ -30,7 +30,7 @@ class Solution {
 			}
 
 			// 각 구간에서 얻을 수 있는 최대 수익
-			int[][] profit = new int[n][n - m + 1]; // 이거 헷갈림
+			int[][] profit = new int[n][n]; // 이거 헷갈림
 
 			for (int i = 0; i <= n - 1; i++) {
 				for (int j = 0; j <= n - m; j++) {
